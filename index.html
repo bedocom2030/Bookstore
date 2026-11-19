@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مكتبة الصفحة – متجر الكتب</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#14213d;--navy2:#1f3057;--beige:#efe6d3;--gold:#b8893a;--gold2:#d3a550;--bg:#fbf8f1;--card:#fff;--tx:#1b1b22;--mut:#6b6b76;--line:#e5dcc8;--ok:#2f7d4f;--warn:#b26a00;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1524;--card:#18213a;--tx:#f1ede2;--mut:#a5a9b8;--line:#2c3757;--beige:#222c47}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:Cairo,Tahoma,sans-serif;background:var(--bg);color:var(--tx);line-height:1.7}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit;color:inherit}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);color:#fff}
+.bar{max-width:1100px;margin:auto;display:flex;align-items:center;gap:14px;padding:10px 16px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.3rem;color:var(--gold2)}
+nav{display:flex;gap:4px;flex-wrap:wrap;flex:1}nav a{padding:4px 10px;border-radius:8px;font-size:.92rem;opacity:.9}nav a:hover{background:var(--navy2)}
+.sb{display:flex;background:#fff;border-radius:10px;overflow:hidden;min-width:170px}.sb input{border:0;padding:6px 10px;outline:0;width:100%;color:#222;background:#fff}
+.cartb{position:relative;padding:4px 10px;border-radius:8px;background:var(--navy2)}.cartb b{background:var(--gold);color:#fff;border-radius:99px;padding:0 7px;font-size:.8rem;margin-inline-start:4px}
+main{max-width:1100px;margin:auto;padding:20px 16px 60px;min-height:70vh}
+h1,h2,h3{line-height:1.3}h2{margin:32px 0 14px}
+.hero{background:var(--navy);color:#fff;border-radius:20px;padding:44px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center}
+.hero h1{font-size:clamp(1.7rem,4.5vw,2.8rem);margin:0 0 12px}.hero p{opacity:.85;margin:0 0 20px;max-width:46ch}
+.shelf{display:flex;gap:10px;justify-content:center;align-items:flex-end;height:190px}
+.btn{display:inline-block;border:0;border-radius:10px;padding:10px 20px;background:var(--gold);color:#fff;font-weight:600;cursor:pointer}.btn:hover{background:var(--gold2)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.o{background:transparent;border:1.5px solid currentColor}.btn.s{padding:5px 12px;font-size:.88rem}.btn.g{background:var(--ok)}.btn.r{background:#a8322d}
+:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.cat{background:var(--beige);border-radius:14px;padding:16px;cursor:pointer;border:1px solid var(--line)}.cat b{display:block}.cat small{color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.cover{aspect-ratio:3/4;border-radius:6px 12px 12px 6px;display:flex;flex-direction:column;justify-content:space-between;padding:14px;color:#fff;font-weight:800;box-shadow:inset 8px 0 0 rgba(0,0,0,.18);text-align:right}
+.cover span{font-weight:400;font-size:.78rem;opacity:.9}
+.card h3{margin:2px 0 0;font-size:1rem}.mut{color:var(--mut);font-size:.88rem}.stars{color:var(--gold)}
+.tag{display:inline-block;font-size:.75rem;padding:1px 8px;border-radius:99px;background:var(--beige);margin-inline-end:4px}
+.price{font-weight:800}.old{text-decoration:line-through;color:var(--mut);font-weight:400}
+.lay{display:grid;grid-template-columns:230px 1fr;gap:20px}
+.side{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;align-self:start}.side label{display:block;margin-top:10px;font-weight:600}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.det{display:grid;grid-template-columns:260px 1fr;gap:26px}
+.opt{display:flex;gap:10px;align-items:center;border:2px solid var(--line);border-radius:12px;padding:12px;margin:8px 0;cursor:pointer}.opt.on{border-color:var(--gold);background:var(--beige)}.opt input{width:auto}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.row>.f{flex:1;min-width:140px}
+.ci{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}
+.ci .cover{padding:4px;font-size:.5rem}
+.sum div{display:flex;justify-content:space-between;padding:4px 0}.sum .tot{font-weight:800;font-size:1.2rem;border-top:2px solid var(--line);margin-top:6px;padding-top:8px}
+.err{color:#b3261e;font-size:.85rem}
+.st{display:inline-block;padding:1px 10px;border-radius:99px;font-size:.8rem;font-weight:600;background:#fdecc8;color:#7a4b00}.st.ok{background:#d6efdf;color:#1d5a37}
+table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{padding:8px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+.wrap{overflow-x:auto}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.stats div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}.stats b{font-size:1.4rem;display:block}
+.tl li{margin:6px 0;color:var(--mut)}.tl li.d{color:var(--ok);font-weight:600}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}.modal>div{background:var(--card);border-radius:16px;padding:22px;max-width:440px;width:100%}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:10px;z-index:60}
+footer{background:var(--navy);color:#cfd3df;padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px))}footer div{max-width:1100px;margin:auto;display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem}footer a:hover{color:var(--gold2)}
+@media(max-width:760px){.hero,.lay,.det{grid-template-columns:1fr}.shelf{height:120px}}
+@media(prefers-reduced-motion:no-preference){.card{transition:transform .15s}.card:hover{transform:translateY(-3px)}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#home">مكتبة الصفحة</a>
+<nav><a href="#home">الرئيسية</a><a href="#catalog">تصفح الكتب</a><a href="#cat-ebook">الكتب الإلكترونية</a><a href="#cat-paper">الكتب الورقية</a><a href="#orders">طلباتي</a></nav>
+<div class="sb"><input id="q" placeholder="ابحث باسم الكتاب أو المؤلف" aria-label="بحث"></div>
+<a class="cartb" href="#cart">السلة<b id="cc">0</b></a>
+</div></header>
+<main id="app"></main>
+<footer><div><a href="#page-about">من نحن</a><a href="#page-privacy">سياسة الخصوصية</a><a href="#page-terms">الشروط والأحكام</a><a href="#page-refund">الاسترجاع والاستبدال</a><a href="#page-faq">الأسئلة الشائعة</a><a href="#page-contact">تواصل معنا</a><a href="#admin">الإدارة</a><span>© ٢٠٢٦ مكتبة الصفحة</span></div></footer>
+<script>
+var STOREV={};function WAN(){return STOREV.whatsapp||'966598242580'}
+const WA='966598242580',SHIP=20,PASS='admin123';
+const COLORS=['#14213d','#8a5a1f','#2b5d4b','#5b2a4e','#7a2e2e','#25557a','#4a4a2a','#3b3b6b','#6b3b2a','#1f4a4a'];
+const SEED=[
+['العادات الذرية','جيمس كلير','تطوير الذات',25,55,'تطوير العادات اليومية وتحقيق التغيير التدريجي.',4.8],
+['الأب الغني والأب الفقير','روبرت كيوساكي','الأعمال والمال',20,45,'مبادئ الثقافة المالية والاستثمار.',4.5],
+['سيكولوجية المال','مورغان هاوسل','الاقتصاد',30,60,'العلاقة بين السلوك البشري والقرارات المالية.',4.7],
+['Clean Code','Robert C. Martin','البرمجة',35,90,'مبادئ كتابة الأكواد النظيفة والاحترافية.',4.6],
+['الخيميائي','باولو كويلو','الروايات',18,40,'رواية عن الأحلام والرحلة واكتشاف الذات.',4.4],
+['العمل العميق','كال نيوبورت','الإنتاجية',22,50,'كيفية التركيز والعمل بكفاءة عالية.',4.5],
+['العاقل: تاريخ مختصر للجنس البشري','يوفال نوح هراري','التاريخ',32,75,'رحلة في تاريخ تطور الإنسان والحضارات.',4.7],
+['48 قانونًا للقوة','روبرت غرين','علم النفس',28,65,'مفاهيم القوة والتأثير والاستراتيجيات الاجتماعية.',4.3],
+['ابدأ بلماذا','سايمون سينك','الإدارة',24,52,'أهمية تحديد الهدف في القيادة والأعمال.',4.4],
+['Introduction to Algorithms','Thomas H. Cormen وآخرون','علوم الحاسب',45,150,'مرجع في الخوارزميات وعلوم الحاسب.',4.9]
+].map((b,i)=>({id:i+1,title:b[0],author:b[1],cat:b[2],e:b[3],p:b[4],desc:b[5],rating:b[6],n:50+i*13,stock:i==3?0:12,file:'',date:'2026-0'+(i%9+1),old:i%4==1?b[4]+15:0,color:COLORS[i]}));
+const CPHONE={'+966':['السعودية',9,/^5/],'+20':['مصر',10],'+971':['الإمارات',9],'+965':['الكويت',8],'+974':['قطر',8],'+973':['البحرين',8],'+962':['الأردن',9],'+968':['عُمان',8],'+41':['سويسرا',9]};
+const ST=['بانتظار الدفع','تم تأكيد الدفع','قيد التجهيز','تم تجهيز الطلب','تم تسليمه لشركة الشحن','خرج للتوصيل','تم التسليم','ملغي'];
+const $=s=>document.querySelector(s),app=$('#app');
+const ld=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let books=ld('bk_books',SEED),cart=ld('bk_cart',[]),orders=ld('bk_orders',[]),admin=false,busy=false;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const bk=id=>books.find(b=>b.id==id),money=n=>n+' '+(window.CUR||'ر.س');
+const stars=r=>'<span class="stars">'+'★'.repeat(Math.round(r))+'☆'.repeat(5-Math.round(r))+'</span> '+r;
+const toast=m=>{const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2200)};
+const saveAll=()=>{sv('bk_books',books);sv('bk_cart',cart);sv('bk_orders',orders)};
+const cover=(b,small)=>`<div class="cover" style="background:${b.color}"><span>${esc(b.author)}</span><div>${esc(b.title)}</div></div>`;
+const minP=b=>Math.min(...[b.e>0?b.e:1e9,b.p>0?b.p:1e9]);
+const card=b=>`<div class="card"><a href="#book-${b.id}">${cover(b)}</a><h3>${esc(b.title)}</h3><div class="mut">${esc(b.author)}</div><div><span class="tag">${esc(b.cat)}</span></div><div>${stars(b.rating)} <span class="mut">(${b.n})</span></div>
+<div>${b.e>0?'<span class="tag">إلكتروني</span>':''}${b.p>0&&b.stock>0?'<span class="tag">ورقي</span>':''}</div>
+<div class="price">يبدأ من ${money(minP(b))} ${b.old?`<span class="old">${b.old}</span>`:''}</div>
+<div class="row"><a class="btn s" href="#book-${b.id}">التفاصيل واختيار النسخة</a></div></div>`;
+function quick(id){const b=bk(id);const t=b.e>0?'e':'p';if(t=='p'&&b.stock<1)return toast('غير متوفر');add(id,t)}
+function add(id,t){const b=bk(id);if(t=='p'){const q=cart.filter(c=>c.id==id&&c.t=='p').length;if(q>=b.stock)return toast('الكمية المتوفرة غير كافية')}
+ if(t=='e'&&cart.some(c=>c.id==id&&c.t=='e'))return toast('الكتاب الإلكتروني موجود في السلة');
+ cart.push({id,t});saveAll();upd();toast('تمت إضافة الكتاب إلى سلة التسوق بنجاح')}
+function upd(){$('#cc').textContent=cart.length}
+function lines(){const m={};cart.forEach(c=>{const k=c.id+c.t;m[k]=m[k]||{...c,q:0};m[k].q++});return Object.values(m).filter(l=>bk(l.id)).map(l=>{const b=bk(l.id);l.b=b;l.pr=l.t=='e'?b.e:b.p;return l})}
+function totals(ls){const e=ls.filter(l=>l.t=='e').reduce((s,l)=>s+l.pr*l.q,0),p=ls.filter(l=>l.t=='p').reduce((s,l)=>s+l.pr*l.q,0);const ship=ls.some(l=>l.t=='p')?SHIP:0;return{e,p,ship,sub:e+p,total:e+p+ship}}
+function chg(id,t,d){const i=cart.findIndex(c=>c.id==id&&c.t==t);if(d<0){if(i>-1)cart.splice(i,1)}else add(id,t);saveAll();upd();route()}
+function del(id,t){cart=cart.filter(c=>!(c.id==id&&c.t==t));saveAll();upd();route()}
+function swap(id,t){const n=t=='e'?'p':'e',b=bk(id);if((n=='e'&&b.e<=0)||(n=='p'&&(b.p<=0||b.stock<1)))return toast('النسخة الأخرى غير متوفرة');cart=cart.map(c=>c.id==id&&c.t==t?{id,t:n}:c);saveAll();route()}
+/* views */
+const V={};
+V.home=()=>{const nb=[...books].sort((a,b)=>b.n-a.n).slice(0,4),nw=[...books].sort((a,b)=>b.date<a.date?-1:1).slice(0,4),of=books.filter(b=>b.old).slice(0,4);
+ const cats=[...new Set(books.map(b=>b.cat))];
+ return `<section class="hero"><div><h1>عالم المعرفة بين يديك.. اقرأ بطريقتك</h1><p>اكتشف كتبًا في مختلف المجالات، واختر نسختك الإلكترونية للقراءة الفورية أو نسختك الورقية لتصلك إلى باب منزلك.</p><div class="row"><a class="btn" href="#catalog">تصفح جميع الكتب</a><a class="btn o" href="#catalog-best">اكتشف الأكثر مبيعًا</a></div></div>
+ <div class="shelf">${books.slice(0,5).map((b,i)=>`<div class="cover" style="background:${b.color};width:62px;height:${120+i%3*26}px;padding:6px;font-size:.55rem">${esc(b.title.slice(0,18))}</div>`).join('')}</div></section>
+ <h2>الأقسام</h2><div class="cats">${cats.map(c=>`<a class="cat" href="#catalog-${encodeURIComponent(c).replace(/%/g,'')}" onclick="CF=${JSON.stringify(c).replace(/"/g,'&quot;')}"><b>${esc(c)}</b><small>${books.filter(b=>b.cat==c).length} كتاب</small></a>`).join('')}</div>
+ <h2>الكتب الأكثر مبيعًا</h2><div class="grid">${nb.map(card).join('')}</div>
+ <h2>أُضيفت حديثًا</h2><div class="grid">${nw.map(card).join('')}</div>
+ ${of.length?`<h2>العروض والخصومات</h2><div class="grid">${of.map(card).join('')}</div>`:''}`};
+let CF='',TF='',SORT='new',MINP='',MAXP='',RT=0,SQ='';
+V.catalog=()=>{let l=books.filter(b=>(!CF||b.cat==CF)&&(!SQ||(b.title+b.author+b.cat).toLowerCase().includes(SQ.toLowerCase()))&&b.rating>=RT);
+ if(TF=='e')l=l.filter(b=>b.e>0);if(TF=='p')l=l.filter(b=>b.p>0);if(TF=='b')l=l.filter(b=>b.e>0&&b.p>0);
+ if(MINP)l=l.filter(b=>minP(b)>=+MINP);if(MAXP)l=l.filter(b=>minP(b)<=+MAXP);
+ const S={new:(a,b)=>b.date<a.date?-1:1,best:(a,b)=>b.n-a.n,low:(a,b)=>minP(a)-minP(b),high:(a,b)=>minP(b)-minP(a),rate:(a,b)=>b.rating-a.rating};l.sort(S[SORT]);
+ const cats=[...new Set(books.map(b=>b.cat))];
+ return `<h1>اكتشف مكتبتنا</h1><p class="mut">اختر من بين مجموعة متنوعة من الكتب في مختلف المجالات، واستمتع بتجربة قراءة تناسبك.</p>
+ <div class="lay"><aside class="side"><b>تصفية</b>
+ <label>القسم<select onchange="CF=this.value;route()"><option value="">جميع الكتب</option>${cats.map(c=>`<option ${c==CF?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
+ <label>نوع النسخة<select onchange="TF=this.value;route()"><option value="">الكل</option><option value="e" ${TF=='e'?'selected':''}>إلكتروني</option><option value="p" ${TF=='p'?'selected':''}>ورقي</option><option value="b" ${TF=='b'?'selected':''}>متوفر بالنوعين</option></select></label>
+ <label>السعر (ر.س)</label><div class="row"><input type="number" min="0" placeholder="من" value="${MINP}" onchange="MINP=this.value;route()"><input type="number" min="0" placeholder="إلى" value="${MAXP}" onchange="MAXP=this.value;route()"></div>
+ <label>التقييم<select onchange="RT=+this.value;route()"><option value="0">الكل</option><option value="5" ${RT==5?'selected':''}>خمس نجوم</option><option value="4" ${RT==4?'selected':''}>٤ نجوم فأكثر</option><option value="3" ${RT==3?'selected':''}>٣ نجوم فأكثر</option></select></label>
+ <label>الترتيب<select onchange="SORT=this.value;route()">${[['new','الأحدث'],['best','الأكثر مبيعًا'],['low','الأقل سعرًا'],['high','الأعلى سعرًا'],['rate','الأعلى تقييمًا']].map(o=>`<option value="${o[0]}" ${SORT==o[0]?'selected':''}>${o[1]}</option>`).join('')}</select></label>
+ <button class="btn s o" style="margin-top:12px" onclick="CF=TF=MINP=MAXP=SQ='';RT=0;$('#q').value='';route()">مسح التصفية</button></aside>
+ <div>${l.length?`<div class="grid">${l.map(card).join('')}</div>`:'<div class="box">لا توجد كتب مطابقة. جرّب تغيير التصفية أو كلمات البحث.</div>'}</div></div>`};
+V.book=id=>{const b=bk(id);if(!b)return'<div class="box">الكتاب غير موجود.</div>';const hasP=b.p>0&&b.stock>0;
+ const sim=books.filter(x=>x.cat==b.cat&&x.id!=b.id).concat(books.filter(x=>x.cat!=b.cat)).slice(0,4);
+ window.SEL='';
+ return `<div class="det"><div>${cover(b)}</div><div><h1>${esc(b.title)}</h1><div class="mut">${esc(b.author)} • ${esc(b.cat)}</div><div>${stars(b.rating)} <span class="mut">(${b.n} تقييم)</span></div><p>${esc(b.desc)}</p>
+ <h3>اختر النسخة التي تريد شراءها</h3>
+ ${b.e>0?`<label class="opt ${SEL=='e'?'on':''}"><input type="radio" name="ed" value="e" ${SEL=='e'?'checked':''} onchange="pick('e',${b.e})"><div><b>النسخة الإلكترونية</b><div class="mut">ملف رقمي قابل للتحميل بعد تأكيد الدفع.</div></div><b style="margin-inline-start:auto">${money(b.e)}</b></label>`:''}
+ ${b.p>0?`<label class="opt ${SEL=='p'?'on':''}" ${hasP?'':'style="opacity:.5"'}><input type="radio" name="ed" value="p" ${hasP?'':'disabled'} onchange="pick('p',${b.p})"><div><b>النسخة الورقية</b><div class="mut">${hasP?'نسخة مطبوعة تصلك إلى عنوانك. المتوفر: '+b.stock:'نفدت الكمية'}</div></div><b style="margin-inline-start:auto">${money(b.p)}</b></label>`:''}
+ <div class="price" style="font-size:1.3rem">السعر: <span id="sp">${SEL=='e'?money(b.e):SEL=='p'?money(b.p):'—'}</span></div>
+ <button class="btn" id="addb" style="margin-top:10px" disabled onclick="add(${b.id},SEL)">إضافة إلى سلة التسوق</button><p class="mut" id="shipnote">اختر النسخة أولًا. الورقية تتطلب بيانات التوصيل ورسوم شحن، والإلكترونية بلا شحن.</p></div></div>
+ <h2>مراجعات العملاء</h2><div class="box">لا توجد مراجعات مكتوبة بعد. التقييم الحالي ${b.rating} من 5.</div>
+ <h2>كتب مشابهة</h2><div class="grid">${sim.map(card).join('')}</div>`};
+function pick(t,p){SEL=t;$('#sp').textContent=money(p);$('#addb').disabled=false;$('#shipnote').textContent=t=='p'?'نسخة ورقية: بعد السلة تنتقل إلى خطوة بيانات التوصيل وتُضاف رسوم شحن.':'نسخة إلكترونية: بلا شحن، ويصلك التحميل بعد تأكيد الدفع.';document.querySelectorAll('.opt').forEach(o=>o.classList.toggle('on',o.querySelector('input').checked))}
+V.cart=()=>{const ls=lines();if(!ls.length)return'<div class="box"><h2>سلة التسوق فارغة</h2><a class="btn" href="#catalog">تصفح الكتب</a></div>';const t=totals(ls);const np=ls.filter(l=>l.t=='p').reduce((s,l)=>s+l.q,0);
+ return `<h1>سلة التسوق</h1><div class="lay" style="grid-template-columns:1fr 280px"><div class="box">${ls.map(l=>`<div class="ci"><div>${cover(l.b)}</div><div><b>${esc(l.b.title)}</b> <span class="tag">${l.t=='e'?'إلكتروني':'ورقي'}</span><div class="mut">${esc(l.b.author)} • نسخة ${l.t=='e'?'إلكترونية':'ورقية'} • ${money(l.pr)}</div>
+ ${l.t=='p'?`<div class="row" style="margin-top:4px"><button class="btn s o" aria-label="إنقاص" onclick="chg(${l.id},'p',-1)">−</button><b>${l.q}</b><button class="btn s o" aria-label="زيادة" onclick="chg(${l.id},'p',1)">+</button></div>`:''}
+ <div class="row" style="margin-top:4px"><button class="btn s r" onclick="del(${l.id},'${l.t}')">حذف</button>${(l.t=='e'&&l.b.p>0&&l.b.stock>0)||(l.t=='p'&&l.b.e>0)?`<button class="btn s o" onclick="swap(${l.id},'${l.t}')">تغيير النسخة</button>`:''}</div></div><b>${money(l.pr*l.q)}</b></div>`).join('')}</div>
+ <div class="box sum"><b>ملخص الأسعار</b><div><span>مجموع الكتب</span><span>${money(t.sub)}</span></div><div><span>الشحن</span><span>${np?'يُحسب بعد إدخال العنوان':'لا يلزم'}</span></div><div class="tot"><span>الإجمالي قبل الشحن</span><span>${money(t.sub)}</span></div>
+ <p class="mut">${np?'يوجد '+np+' كتاب ورقي في السلة، وسيُطلب منك عنوان التوصيل.':'سلتك إلكترونية بالكامل، لا شحن ولا عنوان.'}</p><button class="btn" style="width:100%" onclick="go('checkout')">متابعة الشراء</button></div></div>`};
+function go(r){if(!lines().length)return;location.hash=r}
+let ADDR=ld('bk_addr',{cc:'+966'});
+V.checkout=()=>{const ls=lines();if(!ls.length)return V.cart();const hasP=ls.some(l=>l.t=='p'),a=ADDR;
+ const f=(k,l,ph,req=1)=>`<div class="f"><label>${l}${req?' *':''}<input id="a_${k}" value="${esc(a[k]||'')}" placeholder="${ph}"></label><div class="err" id="e_${k}"></div></div>`;
+ return `<h1>${hasP?'أين تريد استلام طلبك؟':'بيانات التواصل'}</h1><p class="mut">${hasP?'أدخل بياناتك بشكل صحيح حتى نتمكن من توصيل الكتب الورقية إلى عنوانك.':'سنرسل لك الكتب الإلكترونية على رقمك بعد تأكيد الدفع. لا يلزم عنوان ولا شحن.'}</p><div class="box">
+ <div class="row">${f('nm','الاسم الكامل','محمد أحمد')}</div><div class="row"><div class="f" style="max-width:200px"><label>رمز الدولة<select id="a_cc">${Object.entries(CPHONE).map(([c,v])=>`<option value="${c}" ${a.cc==c?'selected':''}>${v[0]} ${c}</option>`).join('')}</select></label></div>${f('ph','رقم الهاتف (دون رمز الدولة)','5XXXXXXXX')}</div>
+ ${hasP?'<h3>عنوان التوصيل للكتب الورقية</h3>':''}<div class="row" ${hasP?'':'hidden'}>${f('city','المدينة','الرياض')}${f('dist','الحي','الياسمين')}${f('st','الشارع ورقم المبنى','شارع الملك عبدالعزيز')}</div>
+ <div ${hasP?'':'hidden'}>${f('lm','العلامة المميزة','بجوار المسجد، والبوابة بيضاء')}</div><div class="f"><label>ملاحظات إضافية (اختياري)<textarea id="a_nt" rows="2">${esc(a.nt||'')}</textarea></label></div>
+ <button class="btn" style="margin-top:12px" onclick="saveAddr()">حفظ ومتابعة</button></div>`};
+function saveAddr(){const g=k=>$('#a_'+k).value.trim();const hasP=lines().some(l=>l.t=='p');const a={nm:g('nm'),cc:g('cc'),ph:g('ph').replace(/\D/g,'').replace(/^0+/,''),city:g('city'),dist:g('dist'),st:g('st'),lm:g('lm'),nt:g('nt')};let ok=true;
+ const e=(k,m)=>{$('#e_'+k).textContent=m;if(m)ok=false};e('nm',a.nm?'':'هذا الحقل مطلوب');if(hasP)['city','dist','st','lm'].forEach(k=>e(k,a[k]?'':'هذا الحقل مطلوب'));else a.city=a.dist=a.st=a.lm='';
+ const c=CPHONE[a.cc];e('ph',a.ph.length==c[1]&&(!c[2]||c[2].test(a.ph))?'':`رقم غير صحيح لـ${c[0]}: يجب أن يكون ${c[1]} أرقام${c[2]?' ويبدأ بـ 5':''}`);
+ ADDR=a;sv('bk_addr',a);if(ok)location.hash='pay'}
+V.pay=()=>{const ls=lines();if(!ls.length)return V.cart();const t=totals(ls),hasP=ls.some(l=>l.t=='p');if(!ADDR.ph||!ADDR.nm){location.hash='checkout';return''}
+ return `<h1>إتمام عملية الشراء</h1><div class="lay" style="grid-template-columns:1fr 320px"><div class="box"><b>ملخص الطلب</b>${ls.map(l=>`<div class="ci" style="grid-template-columns:1fr auto"><div>${esc(l.b.title)}<div class="mut">نسخة ${l.t=='e'?'إلكترونية':'ورقية'} × ${l.q}</div></div><b>${money(l.pr*l.q)}</b></div>`).join('')}
+ <p class="mut">العميل: ${esc(ADDR.nm)} — ${ADDR.cc}${ADDR.ph}</p>${hasP?`<p class="mut">التوصيل إلى: ${esc(ADDR.city)}، ${esc(ADDR.dist)}، ${esc(ADDR.st)}</p>`:'<p class="mut">طلب إلكتروني بالكامل: بلا شحن.</p>'}</div>
+ <div class="box sum"><div><span>الكتب الإلكترونية</span><span>${money(t.e)}</span></div><div><span>الكتب الورقية</span><span>${money(t.p)}</span></div><div><span>رسوم الشحن</span><span>${money(t.ship)}</span></div><div class="tot"><span>المبلغ المطلوب تحويله</span><span>${money(t.total)}</span></div></div></div>
+ <div class="box"><h3>الدفع عن طريق التحويل المالي</h3><p>رقم واتساب الدفع: <b dir="ltr">+${WAN()}</b> <button class="btn s o" onclick="navigator.clipboard&&navigator.clipboard.writeText('+'+WAN());toast('تم نسخ الرقم')">نسخ الرقم</button></p>
+ <p>يرجى تحويل مبلغ الطلب بالكامل إلى الرقم الموضح أعلاه، ثم إرسال صورة إيصال التحويل عبر واتساب حتى يتمكن فريق المتجر من مراجعة الدفع وتأكيد الطلب.</p>
+ <button class="btn" style="font-size:1.1rem;padding:12px 40px" onclick="confirmBuy()">شراء الآن</button></div>`};
+function confirmBuy(){const t=totals(lines());const m=document.createElement('div');m.className='modal';m.innerHTML=`<div><h3>تأكيد عملية الشراء</h3><p>هل أنت متأكد من رغبتك في إتمام الطلب؟</p><p>المبلغ المطلوب تحويله: <b>${t.total} ريال سعودي</b><br>رقم الاستلام: <b dir="ltr">+${WAN()}</b></p><p class="mut">تأكد من تحويل المبلغ الصحيح وإرسال إيصال التحويل عبر واتساب.</p><div class="row"><button class="btn" id="goWa">تم، الانتقال إلى واتساب</button><button class="btn o" onclick="this.closest('.modal').remove()">رجوع</button></div></div>`;document.body.append(m);$('#goWa').onclick=function(){if(busy)return;busy=true;this.disabled=true;placeOrder(m)}}
+function placeOrder(m){const ls=lines();const bad=ls.find(l=>l.t=='p'&&l.q>l.b.stock);if(bad){busy=false;m.remove();return toast('الكمية غير متوفرة: '+bad.b.title)}
+ const t=totals(ls);const n=Math.max(1024,...orders.map(o=>+o.no.slice(2)))+1,no='BK'+n,hasP=ls.some(l=>l.t=='p');
+ const o={no,time:Date.now(),items:ls.map(l=>({id:l.id,title:l.b.title,t:l.t,q:l.q,pr:l.pr})),cust:{...ADDR},...t,status:0,paidAt:null};
+ orders.unshift(o);ls.forEach(l=>{if(l.t=='p')l.b.stock-=l.q});cart=[];saveAll();upd();
+ const msg=`السلام عليكم، أريد تأكيد طلبي من متجر الكتب.\n\nرقم الطلب: #${no}\n\n`+`بيانات العميل:\n- الاسم: ${ADDR.nm}\n- الهاتف: ${ADDR.cc}${ADDR.ph}\n`+(hasP?`- المدينة: ${ADDR.city}\n- الحي: ${ADDR.dist}\n- الشارع: ${ADDR.st}\n- العلامة المميزة: ${ADDR.lm}\n`:'')+'\n'+`تفاصيل الكتب:\n`+o.items.map((x,i)=>`${i+1}. ${x.title}\n- النسخة: ${x.t=='e'?'إلكترونية':'ورقية'} × ${x.q}\n- السعر: ${x.pr*x.q} ريال`).join('\n')+`\n\nالحساب النهائي:\n- إجمالي الكتب: ${t.sub} ريال\n- الشحن: ${t.ship} ريال\n- المبلغ المطلوب: ${t.total} ريال سعودي\n\nأرجو تأكيد الطلب بعد مراجعة التحويل.\nشكرًا لكم.`;
+ o.wa='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);saveAll();window.open(o.wa,'_blank');m.remove();busy=false;location.hash='order-'+no}
+const tl=['تم إنشاء الطلب','بانتظار التحويل وإرسال الإيصال','مراجعة إثبات الدفع','تأكيد الطلب'];
+V.order=no=>{const o=orders.find(x=>x.no==no);if(!o)return'<div class="box">لم يتم العثور على الطلب على هذا الجهاز.</div>';const paid=o.status>=1&&o.status<7;
+ return `<div class="box"><h1>${paid?'تم تأكيد الدفع':o.status==7?'تم إلغاء الطلب':'طلبك في انتظار تأكيد الدفع'}</h1>${paid?'':'<p>شكرًا لطلبك من متجرنا! تم تسجيل طلبك بنجاح، ونحن بانتظار مراجعة إثبات التحويل المالي لتأكيد طلبك وتجهيزه.</p>'}
+ <p>الطلب <b>#${o.no}</b> — <span class="st ${paid?'ok':''}">${ST[o.status]}</span> — المبلغ الإجمالي <b>${money(o.total)}</b></p>
+ <ul class="tl">${tl.map((x,i)=>`<li class="${(i<2||paid&&i<4)&&o.status<7?'d':''}">${(i<2||paid&&i<4)&&o.status<7?'✓ ':'○ '}${x}</li>`).join('')}</ul>
+ ${o.status==0?`<a class="btn g" target="_blank" rel="noopener" href="${o.wa||'#'}">التواصل مع المتجر عبر واتساب</a>`:''}</div>
+ <div class="box"><b>الكتب</b>${o.items.map(x=>`<div class="ci" style="grid-template-columns:1fr auto auto"><span>${esc(x.title)} <span class="mut">(${x.t=='e'?'إلكتروني':'ورقي'} × ${x.q})</span></span>${x.t=='e'&&paid?`<button class="btn s g" onclick="dl(${x.id})">تحميل الكتاب</button>`:x.t=='e'?'<span class="mut">يتاح بعد تأكيد الدفع</span>':''}<b>${money(x.pr*x.q)}</b></div>`).join('')}</div>`};
+function dl(id){const b=bk(id);if(b&&b.file)window.open(b.file,'_blank','noopener');else toast('لم يرفع المتجر ملف هذا الكتاب بعد. سيصلك عبر واتساب.')}
+V.orders=()=>`<h1>طلباتي</h1>${orders.length?`<div class="box">${orders.map(o=>`<a class="ci" style="grid-template-columns:1fr auto auto" href="#order-${o.no}"><b>#${o.no}</b><span class="st ${o.status>=1&&o.status<7?'ok':''}">${ST[o.status]}</span><b>${money(o.total)}</b></a>`).join('')}</div>`:'<div class="box">لا توجد طلبات على هذا الجهاز بعد.</div>'}`;
+V.admin=()=>{if(!admin)return `<div class="box" style="max-width:360px;margin:auto"><h2>لوحة التحكم</h2><label>كلمة المرور<input id="pw" type="password"></label><button class="btn" style="margin-top:10px" onclick="if($('#pw').value==PASS){admin=true;route()}else toast('كلمة المرور غير صحيحة')">دخول</button><p class="mut">النسخة التجريبية: كلمة المرور admin123</p></div>`;
+ const c=s=>orders.filter(o=>o.status==s).length,sales=orders.filter(o=>o.status>=1&&o.status<7).reduce((s,o)=>s+o.total,0);
+ return `<h1>لوحة التحكم</h1><div class="stats"><div>إجمالي الطلبات<b>${orders.length}</b></div><div>بانتظار الدفع<b>${c(0)}</b></div><div>مؤكدة<b>${c(1)}</b></div><div>قيد التجهيز<b>${c(2)}</b></div><div>تم شحنها<b>${c(4)+c(5)}</b></div><div>إجمالي المبيعات<b>${sales}</b></div><div>عدد الكتب<b>${books.length}</b></div></div>
+ <h2>الطلبات</h2><div class="box wrap">${orders.length?`<table><tr><th>الطلب</th><th>الكتب والعميل</th><th>الإجمالي</th><th>الحالة</th></tr>${orders.map(o=>`<tr><td>#${o.no}<br><span class="mut">${new Date(o.time).toLocaleString('ar-SA')}</span></td><td>${o.items.map(x=>esc(x.title)+' ('+(x.t=='e'?'إ':'ور')+'×'+x.q+')').join('<br>')}${o.cust?`<br><span class="mut">${esc(o.cust.nm||'')} ${o.cust.cc}${o.cust.ph}${o.cust.city?' — '+esc(o.cust.city)+'، '+esc(o.cust.dist)+'، '+esc(o.cust.st):' — طلب إلكتروني'}</span>`:''}</td><td>${o.total}<br><span class="mut">شحن ${o.ship}</span></td>
+ <td>${o.status==0?`<button class="btn s g" onclick="setSt('${o.no}',1)">تأكيد الدفع</button>`:`<select onchange="setSt('${o.no}',+this.value)">${ST.map((s,i)=>i?`<option value="${i}" ${o.status==i?'selected':''}>${s}</option>`:'').join('')}</select>`}<br><span class="mut">${o.paidAt?'أُكد: '+new Date(o.paidAt).toLocaleString('ar-SA'):'لم يؤكد'}</span><br><button class="btn s o" onclick="if(confirm('إلغاء الطلب؟'))setSt('${o.no}',7)">إلغاء</button></td></tr>`).join('')}</table>`:'<span class="mut">لا توجد طلبات.</span>'}<p class="mut">لا تؤكد الدفع إلا بعد التأكد من وصول المبلغ فعليًا إلى حسابك.</p></div>
+ <h2>إدارة الكتب</h2><div class="box wrap"><table><tr><th>الكتاب</th><th>إلكتروني</th><th>ورقي</th><th>المخزون</th><th>رابط الملف</th><th></th></tr>${books.map(b=>`<tr><td>${esc(b.title)}</td><td><input type="number" style="width:70px" value="${b.e}" onchange="eb(${b.id},'e',+this.value)"></td><td><input type="number" style="width:70px" value="${b.p}" onchange="eb(${b.id},'p',+this.value)"></td><td><input type="number" style="width:70px" value="${b.stock}" onchange="eb(${b.id},'stock',+this.value)"></td><td><input style="min-width:140px" dir="ltr" value="${esc(b.file)}" placeholder="https://" onchange="eb(${b.id},'file',this.value)"></td><td><button class="btn s r" onclick="if(confirm('حذف الكتاب؟')){books=books.filter(x=>x.id!=${b.id});saveAll();route()}">حذف</button></td></tr>`).join('')}</table></div>
+ <h3>إضافة كتاب</h3><div class="box"><div class="row"><div class="f"><input id="n_t" placeholder="العنوان"></div><div class="f"><input id="n_a" placeholder="المؤلف"></div><div class="f"><input id="n_c" placeholder="القسم"></div></div><div class="row" style="margin-top:8px"><div class="f"><input id="n_e" type="number" placeholder="السعر الإلكتروني (0 = غير متاح)"></div><div class="f"><input id="n_p" type="number" placeholder="السعر الورقي (0 = غير متاح)"></div><div class="f"><input id="n_s" type="number" placeholder="الكمية الورقية"></div></div><textarea id="n_d" rows="2" placeholder="الوصف" style="margin-top:8px"></textarea><button class="btn" style="margin-top:8px" onclick="addBook()">إضافة</button></div>`};
+function setSt(no,s){const o=orders.find(x=>x.no==no);if(s==7&&o.status<7)o.items.forEach(x=>{if(x.t=='p'){const b=bk(x.id);if(b)b.stock+=x.q}});if(s>=1&&s<7&&!o.paidAt)o.paidAt=Date.now();o.status=s;saveAll();route()}
+function eb(id,k,v){bk(id)[k]=v;saveAll()}
+function addBook(){const g=k=>$('#n_'+k).value.trim();if(!g('t')||!g('a')||!g('c'))return toast('العنوان والمؤلف والقسم مطلوبة');const id=Math.max(0,...books.map(b=>b.id))+1;books.push({id,title:g('t'),author:g('a'),cat:g('c'),e:+g('e')||0,p:+g('p')||0,stock:+g('s')||0,desc:g('d'),rating:4,n:0,file:'',date:new Date().toISOString().slice(0,7),old:0,color:COLORS[id%10]});saveAll();route()}
+const PAGES={about:['من نحن','متجر متخصص في بيع الكتب الإلكترونية والورقية، هدفه أن يصل القارئ إلى الكتاب المناسب بأبسط طريقة.'],privacy:['سياسة الخصوصية','نحفظ رقم هاتفك وعنوانك لغرض تجهيز طلبك وتوصيله فقط، ولا نشاركها مع أي طرف آخر.'],terms:['الشروط والأحكام','يُعتمد الطلب بعد تأكيد المتجر وصول المبلغ. الكتب الإلكترونية للاستخدام الشخصي ولا يجوز إعادة توزيعها.'],refund:['الاسترجاع والاستبدال','يمكن استرجاع الكتب الورقية وفق الشروط التي يحددها المتجر. المنتجات الرقمية تخضع للأنظمة المعمول بها.'],contact:['تواصل معنا',()=>`واتساب المتجر: <b dir="ltr">+${WAN()}</b>`],faq:['الأسئلة الشائعة','<b>كيف أشتري كتابًا؟</b> أضفه إلى السلة، ثم اضغط «شراء الآن» وحوّل المبلغ.<br><b>كيف أرسل إثبات التحويل؟</b> عبر رسالة واتساب التي تُجهز تلقائيًا.<br><b>كيف أحصل على الكتاب الإلكتروني؟</b> يظهر زر التحميل في صفحة طلبك بعد تأكيد الدفع.<br><b>هل يمكن إلغاء الطلب؟</b> نعم قبل الشحن، تواصل معنا عبر واتساب.']};
+function route(){const h=(location.hash||'#home').slice(1);const[k,...r]=h.split('-');const a=r.join('-');let out;
+ if(k=='catalog'){if(a=='best')SORT='best'}
+ if(k=='cat'){TF=a=='ebook'?'e':'p';out=V.catalog()}
+ else if(k=='page'){const p=PAGES[a]||PAGES.about;out=`<div class="box"><h1>${p[0]}</h1><p>${typeof p[1]=='function'?p[1]():p[1]}</p></div>`}
+ else out=(V[k]||V.home)(a);app.innerHTML=out;if(k!='cat'&&k!='catalog')window.scrollTo(0,0);upd()}
+$('#q').addEventListener('input',e=>{SQ=e.target.value;if(!location.hash.startsWith('#catalog'))location.hash='catalog';else route()});
+addEventListener('hashchange',route);
+
+/* ===== طبقة Supabase ===== */
+const SBU='https://ejbhtrdulauszfraqczc.supabase.co',KEY='sb_publishable__w0cv_SPyWvq0LQ-sg7Xng_jkJalP5V';
+let TOKEN=null;try{TOKEN=sessionStorage.getItem('bk_t')}catch(e){}
+async function sb(path,o={}){
+ const h={apikey:KEY,'Content-Type':'application/json',...(o.h||{})};if(TOKEN)h.Authorization='Bearer '+TOKEN;
+ const r=await fetch(SBU+path,{method:o.m||'GET',headers:h,body:o.b!==undefined?JSON.stringify(o.b):undefined});
+ const t=await r.text();let j=null;try{j=t?JSON.parse(t):null}catch(e){}
+ if(!r.ok){if(r.status==401&&TOKEN){TOKEN=null;try{sessionStorage.removeItem('bk_t')}catch(e){}}throw new Error((j&&(j.message||j.msg||j.error_description))||'تعذر الاتصال ('+r.status+')')}
+ return j}
+let STORE={name:'مكتبة الصفحة',whatsapp:'966598242580',currency:'ر.س',primary:'#14213d',accent:'#b8893a'},ZONES=[],AO=[],ABK=[],AOL=false,myOrders=ld('bk_my',[]);
+const KEYS=['pending_payment','paid','processing','packed','shipped','out_for_delivery','delivered','cancelled'];
+const SA=['بانتظار الدفع','تم تأكيد الدفع','قيد التجهيز','تم تجهيز الطلب','تم تسليمه لشركة الشحن','خرج للتوصيل','تم التسليم','ملغي'];
+const sa=k=>SA[KEYS.indexOf(k)]||k,isPaid=k=>k!='pending_payment'&&k!='cancelled';
+function applyStore(){STOREV=STORE;window.CUR=STORE.currency;document.title=STORE.name+' – متجر الكتب';document.querySelector('.logo').textContent=STORE.name;const s=document.documentElement.style;s.setProperty('--navy',STORE.primary);s.setProperty('--gold',STORE.accent);s.setProperty('--gold2',STORE.accent)}
+const mapB=p=>({id:p.id,title:p.title,author:p.author||'',cat:(p.categories&&p.categories.name)||'عام',e:p.has_ebook?+p.ebook_price:0,p:p.has_paper?+p.paper_price:0,desc:p.description||'',rating:+p.rating||0,n:p.rating_count||0,stock:p.stock,file:p.ebook_file||'',date:(p.created_at||'').slice(0,7),old:+p.old_price||0,color:COLORS[p.id%10],active:p.active});
+async function load(quiet){try{const[s,z,p]=await Promise.all([sb('/rest/v1/settings?key=eq.store'),sb('/rest/v1/shipping_zones?select=*'),sb('/rest/v1/products?select=*,categories(name)&order=created_at.desc')]);
+ if(s&&s[0])STORE={...STORE,...s[0].value};ZONES=z||[];ABK=(p||[]).map(mapB);books=ABK.filter(b=>b.active);applyStore()}catch(e){toast(e.message)}if(!quiet)route()}
+function shipFor(city){const z=ZONES.find(z=>(z.cities||[]).includes(city))||ZONES.find(z=>z.is_default);return z?+z.price:0}
+function totals(ls){const e=ls.filter(l=>l.t=='e').reduce((s,l)=>s+l.pr*l.q,0),p=ls.filter(l=>l.t=='p').reduce((s,l)=>s+l.pr*l.q,0);const ship=ls.some(l=>l.t=='p')?shipFor((ADDR&&ADDR.city)||''):0;return{e,p,ship,sub:e+p,total:e+p+ship}}
+/* إنشاء الطلب في قاعدة البيانات */
+async function placeOrder(m){const ls=lines();const hasP=ls.some(l=>l.t=='p');
+ try{const r=await sb('/rest/v1/rpc/create_order',{m:'POST',b:{p_items:ls.map(l=>({product_id:l.id,kind:l.t=='e'?'ebook':'paper',qty:l.q})),p_name:ADDR.nm,p_phone:ADDR.cc+ADDR.ph,p_city:hasP?ADDR.city:null,p_district:hasP?ADDR.dist:null,p_street:hasP?ADDR.st:null,p_landmark:hasP?ADDR.lm:null,p_notes:ADDR.nt||null}});
+ const msg=`السلام عليكم، أريد تأكيد طلبي من متجر الكتب.\n\nرقم الطلب: #${r.order_no}\n\nبيانات العميل:\n- الاسم: ${ADDR.nm}\n- الهاتف: ${ADDR.cc}${ADDR.ph}\n`+(hasP?`- المدينة: ${ADDR.city}\n- الحي: ${ADDR.dist}\n- الشارع: ${ADDR.st}\n- العلامة المميزة: ${ADDR.lm}\n`:'')+`\nتفاصيل الكتب:\n`+ls.map((l,i)=>`${i+1}. ${l.b.title}\n- النسخة: ${l.t=='e'?'إلكترونية':'ورقية'} × ${l.q}\n- السعر: ${l.pr*l.q} ${STORE.currency}`).join('\n')+`\n\nالحساب النهائي:\n- إجمالي الكتب: ${r.subtotal} ${STORE.currency}\n- الشحن: ${r.shipping} ${STORE.currency}\n- المبلغ المطلوب: ${r.total} ${STORE.currency}\n\nأرجو تأكيد الطلب بعد مراجعة التحويل.\nشكرًا لكم.`;
+ const wa='https://wa.me/'+STORE.whatsapp+'?text='+encodeURIComponent(msg);
+ myOrders.unshift({no:r.order_no,phone:ADDR.cc+ADDR.ph,wa});sv('bk_my',myOrders);cart=[];saveAll();upd();m.remove();busy=false;
+ try{window.open(wa,'_blank')}catch(e){}location.hash='order-'+r.order_no;load(true)}
+ catch(e){busy=false;m.remove();toast(e.message)}}
+/* متابعة الطلب */
+const orderHtml=(o,my)=>{const paid=isPaid(o.status),can=o.status=='cancelled',items=o.items||[],hasE=items.some(x=>x.kind=='ebook');
+ return `<div class="box"><h1>${paid?'تم تأكيد الدفع':can?'تم إلغاء الطلب':'طلبك في انتظار تأكيد الدفع'}</h1>${paid||can?'':'<p>شكرًا لطلبك من متجرنا! تم تسجيل طلبك بنجاح، ونحن بانتظار مراجعة إثبات التحويل المالي لتأكيد طلبك وتجهيزه.</p>'}
+ <p>الطلب <b>#${esc(o.order_no)}</b> — <span class="st ${paid?'ok':''}">${sa(o.status)}</span> — المبلغ الإجمالي <b>${money(o.total)}</b></p>
+ <ul class="tl">${tl.map((x,i)=>{const d=!can&&(i<2||paid);return `<li class="${d?'d':''}">${d?'✓ ':'○ '}${x}</li>`}).join('')}</ul>
+ ${o.status=='pending_payment'&&my.wa?`<a class="btn g" target="_blank" rel="noopener" href="${esc(my.wa)}">فتح واتساب وإرسال الإيصال</a>`:''}</div>
+ <div class="box"><b>الكتب</b>${items.map(x=>`<div class="ci" style="grid-template-columns:1fr auto"><span>${esc(x.title)} <span class="mut">(${x.kind=='ebook'?'إلكتروني':'ورقي'} × ${x.qty})</span></span><b>${money(x.price*x.qty)}</b></div>`).join('')}
+ ${hasE&&paid?`<button class="btn s g" onclick="dlAll('${o.order_no}')">تحميل الكتب الإلكترونية</button><div id="dlbox" class="row" style="margin-top:8px"></div>`:hasE?'<p class="mut">الكتب الإلكترونية تُتاح بعد تأكيد الدفع.</p>':''}</div>`};
+V.order=no=>{const my=myOrders.find(x=>x.no==no);if(!my)return'<div class="box">لم يتم العثور على الطلب على هذا الجهاز.</div>';
+ sb('/rest/v1/rpc/track_order',{m:'POST',b:{p_no:no,p_phone:my.phone}}).then(o=>{if(location.hash=='#order-'+no)app.innerHTML=o?orderHtml(o,my):'<div class="box">لم يتم العثور على الطلب.</div>'}).catch(e=>toast(e.message));
+ return'<div class="box">جاري تحميل الطلب...</div>'};
+V.orders=()=>`<h1>طلباتي</h1>${myOrders.length?`<div class="box">${myOrders.map(o=>`<a class="ci" style="grid-template-columns:1fr auto" href="#order-${o.no}"><b>#${o.no}</b><span class="mut">عرض الحالة</span></a>`).join('')}</div>`:'<div class="box">لا توجد طلبات على هذا الجهاز بعد.</div>'}`;
+async function dlAll(no){const my=myOrders.find(x=>x.no==no);try{const f=await sb('/rest/v1/rpc/ebook_files',{m:'POST',b:{p_no:no,p_phone:my.phone}});
+ $('#dlbox').innerHTML=(f||[]).map(x=>x.file&&/^https?:/.test(x.file)?`<a class="btn s g" target="_blank" rel="noopener" href="${esc(x.file)}">${esc(x.title)}</a>`:`<div class="mut">ملف «${esc(x.title)}» لم يُرفع بعد، وسيصلك عبر واتساب.</div>`).join(' ')||'لا توجد ملفات'}catch(e){toast(e.message)}}
+/* لوحة الإدارة */
+async function login(){try{const r=await sb('/auth/v1/token?grant_type=password',{m:'POST',b:{email:$('#em').value.trim(),password:$('#pw').value}});TOKEN=r.access_token;try{sessionStorage.setItem('bk_t',TOKEN)}catch(e){}AOL=false;route()}catch(e){toast(/Invalid login/i.test(e.message)?'الإيميل أو كلمة المرور غير صحيحة':/not confirmed/i.test(e.message)?'الإيميل لم يُؤكَّد بعد في Supabase':'خطأ: '+e.message)}}
+function logout(){TOKEN=null;AOL=false;try{sessionStorage.removeItem('bk_t')}catch(e){}load()}
+async function adminLoad(){AOL=true;try{if(!(await sb('/rest/v1/rpc/is_admin',{m:'POST',b:{}}))){toast('هذا الحساب ليس مديرًا');logout();return}
+ AO=await sb('/rest/v1/orders?select=*,order_items(*)&order=created_at.desc');await load()}catch(e){toast(e.message)}}
+const H={Prefer:'return=minimal'};
+async function setSt(id,k){if(k=='cancelled'&&!confirm('إلغاء الطلب وإرجاع الكتب الورقية للمخزون؟'))return route();try{await sb('/rest/v1/orders?id=eq.'+id,{m:'PATCH',b:{status:k},h:H});await adminLoad()}catch(e){toast(e.message)}}
+async function eb(id,k,v){const M={e:{has_ebook:v>0,ebook_price:v||0},p:{has_paper:v>0,paper_price:v||0},stock:{stock:Math.max(0,v||0)},file:{ebook_file:v}};try{await sb('/rest/v1/products?id=eq.'+id,{m:'PATCH',b:M[k],h:H});await load(true);toast('تم الحفظ')}catch(e){toast(e.message)}}
+async function hide(id,a){try{await sb('/rest/v1/products?id=eq.'+id,{m:'PATCH',b:{active:a},h:H});await load()}catch(e){toast(e.message)}}
+async function cats(names){const r=await sb('/rest/v1/categories?on_conflict=name',{m:'POST',b:names.map(name=>({name})),h:{Prefer:'resolution=merge-duplicates,return=representation'}});const m={};r.forEach(c=>m[c.name]=c.id);return m}
+const row=b=>({title:b.title,author:b.author,category_id:b.cid,description:b.desc,has_ebook:b.e>0,ebook_price:b.e,has_paper:b.p>0,paper_price:b.p,stock:b.stock,rating:b.rating,rating_count:b.n,old_price:b.old||null});
+async function addBook(){const g=k=>$('#n_'+k).value.trim();if(!g('t')||!g('a')||!g('c'))return toast('العنوان والمؤلف والقسم مطلوبة');
+ try{const m=await cats([g('c')]);await sb('/rest/v1/products',{m:'POST',b:row({title:g('t'),author:g('a'),cid:m[g('c')],desc:g('d'),e:+g('e')||0,p:+g('p')||0,stock:+g('s')||0,rating:0,n:0,old:0}),h:H});await load();toast('تمت الإضافة')}catch(e){toast(e.message)}}
+async function importSample(){try{const m=await cats([...new Set(SEED.map(b=>b.cat))]);await sb('/rest/v1/products',{m:'POST',b:SEED.map(b=>row({...b,cid:m[b.cat]})),h:H});await load();toast('تمت إضافة الكتب التجريبية')}catch(e){toast(e.message)}}
+async function saveSet(){const v={...STORE,name:$('#s_name').value,whatsapp:$('#s_wa').value.replace(/\D/g,''),currency:$('#s_cur').value,primary:$('#s_p').value,accent:$('#s_a').value};
+ try{await sb('/rest/v1/settings?key=eq.store',{m:'PATCH',b:{value:v},h:H});const z=ZONES.find(z=>z.is_default);if(z)await sb('/rest/v1/shipping_zones?id=eq.'+z.id,{m:'PATCH',b:{price:+$('#s_ship').value||0},h:H});await load();toast('تم حفظ الإعدادات')}catch(e){toast(e.message)}}
+V.admin=()=>{if(!TOKEN)return `<div class="box" style="max-width:360px;margin:auto"><h2>دخول المدير</h2><label>البريد الإلكتروني<input id="em" type="email" dir="ltr"></label><label>كلمة المرور<input id="pw" type="password" dir="ltr"></label><button class="btn" style="margin-top:10px" onclick="login()">دخول</button></div>`;
+ if(!AOL){adminLoad();return'<div class="box">جاري التحميل...</div>'}
+ const c=k=>AO.filter(o=>o.status==k).length,sales=AO.filter(o=>isPaid(o.status)).reduce((s,o)=>s+ +o.total,0),z=ZONES.find(z=>z.is_default);
+ return `<div class="row"><h1 style="flex:1">لوحة التحكم</h1><button class="btn s o" onclick="logout()">تسجيل الخروج</button></div>
+ <div class="stats"><div>إجمالي الطلبات<b>${AO.length}</b></div><div>بانتظار الدفع<b>${c('pending_payment')}</b></div><div>مؤكدة<b>${c('paid')}</b></div><div>قيد التجهيز<b>${c('processing')}</b></div><div>تم شحنها<b>${c('shipped')+c('out_for_delivery')}</b></div><div>إجمالي المبيعات<b>${sales}</b></div><div>عدد الكتب<b>${ABK.length}</b></div></div>
+ <h2>الطلبات</h2><div class="box wrap">${AO.length?`<table><tr><th>الطلب</th><th>الكتب والعميل</th><th>الإجمالي</th><th>الحالة</th></tr>${AO.map(o=>`<tr><td>#${o.order_no}<br><span class="mut">${new Date(o.created_at).toLocaleString('ar-EG')}</span></td><td>${(o.order_items||[]).map(x=>esc(x.title)+' ('+(x.kind=='ebook'?'إ':'ور')+'×'+x.qty+')').join('<br>')}<br><span class="mut">${esc(o.name)} ${esc(o.phone)}${o.city?' — '+esc(o.city)+'، '+esc(o.district||'')+'، '+esc(o.street||'')+(o.landmark?' ('+esc(o.landmark)+')':''):' — طلب إلكتروني'}</span></td><td>${o.total}<br><span class="mut">شحن ${o.shipping}</span></td><td>${o.status=='pending_payment'?`<button class="btn s g" onclick="setSt('${o.id}','paid')">تأكيد الدفع</button> `:''}<select onchange="setSt('${o.id}',this.value)">${KEYS.map((k,i)=>`<option value="${k}" ${o.status==k?'selected':''}>${SA[i]}</option>`).join('')}</select>${o.paid_at?'<br><span class="mut">أُكد: '+new Date(o.paid_at).toLocaleString('ar-EG')+'</span>':''}</td></tr>`).join('')}</table><p class="mut">لا تؤكد الدفع إلا بعد التأكد من وصول المبلغ فعليًا إلى حسابك.</p>`:'<span class="mut">لا توجد طلبات.</span>'}</div>
+ <h2>إدارة الكتب</h2><div class="box wrap">${ABK.length?'':'<button class="btn" onclick="importSample()">إضافة 10 كتب تجريبية</button>'}<table><tr><th>الكتاب</th><th>إلكتروني</th><th>ورقي</th><th>المخزون</th><th>رابط ملف الكتاب</th><th></th></tr>${ABK.map(b=>`<tr style="${b.active?'':'opacity:.5'}"><td>${esc(b.title)}</td><td><input type="number" style="width:70px" value="${b.e}" onchange="eb(${b.id},'e',+this.value)"></td><td><input type="number" style="width:70px" value="${b.p}" onchange="eb(${b.id},'p',+this.value)"></td><td><input type="number" style="width:70px" value="${b.stock}" onchange="eb(${b.id},'stock',+this.value)"></td><td><input style="min-width:140px" dir="ltr" value="${esc(b.file)}" placeholder="https://" onchange="eb(${b.id},'file',this.value)"></td><td><button class="btn s ${b.active?'r':''}" onclick="hide(${b.id},${!b.active})">${b.active?'إخفاء':'إظهار'}</button></td></tr>`).join('')}</table></div>
+ <h3>إضافة كتاب</h3><div class="box"><div class="row"><div class="f"><input id="n_t" placeholder="العنوان"></div><div class="f"><input id="n_a" placeholder="المؤلف"></div><div class="f"><input id="n_c" placeholder="القسم"></div></div><div class="row" style="margin-top:8px"><div class="f"><input id="n_e" type="number" placeholder="السعر الإلكتروني (0 = غير متاح)"></div><div class="f"><input id="n_p" type="number" placeholder="السعر الورقي (0 = غير متاح)"></div><div class="f"><input id="n_s" type="number" placeholder="الكمية الورقية"></div></div><textarea id="n_d" rows="2" placeholder="الوصف" style="margin-top:8px"></textarea><button class="btn" style="margin-top:8px" onclick="addBook()">إضافة</button></div>
+ <h2>إعدادات المتجر</h2><div class="box"><div class="row"><div class="f"><label>اسم المتجر<input id="s_name" value="${esc(STORE.name)}"></label></div><div class="f"><label>رقم واتساب (بصيغة دولية)<input id="s_wa" dir="ltr" value="${esc(STORE.whatsapp)}"></label></div><div class="f"><label>العملة<input id="s_cur" value="${esc(STORE.currency)}"></label></div></div>
+ <div class="row" style="margin-top:8px"><div class="f"><label>رسوم الشحن<input id="s_ship" type="number" value="${z?z.price:0}"></label></div><div class="f"><label>اللون الأساسي<input id="s_p" type="color" value="${esc(STORE.primary)}"></label></div><div class="f"><label>لون الأزرار<input id="s_a" type="color" value="${esc(STORE.accent)}"></label></div></div><button class="btn" style="margin-top:10px" onclick="saveSet()">حفظ الإعدادات</button></div>`};
+/* تشغيل */
+books=[];app.innerHTML='<div class="box">جاري تحميل المتجر...</div>';load();
+</script>
+</body>
+</html>
